@@ -1,4 +1,8 @@
+const env = require('dotenv').config();
+const api_url = env.parsed.API_URL
+
 export default {
+  env: env.parsed,
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
@@ -21,6 +25,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '~/assets/style.scss',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -38,7 +43,46 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
   ],
+
+  axios: {
+    baseURL: api_url,
+    credentials: true,
+  },
+
+  auth: {
+    rewriteRedirects: true,
+    fullPathRedirect: true,
+    redirect: {
+      login: '/login',
+      logout: '/login',
+      callback: false,
+      home: false,
+    },
+    strategies: {
+      local: {
+        token: {
+          maxAge: 259200,
+        },
+        endpoints: {
+          login: { url: `${api_url}/login`, method: 'post', propertyName: 'token' },
+          logout: { url: `${api_url}/logout`, method: 'post' },
+          user: { url: `${api_url}/self`, method: 'get', propertyName: false },
+        },
+        tokenType: 'Bearer',
+        user: {
+          property: false,
+        },
+      },
+    },
+    watchLoggedIn: true,
+  },
+
+  router: {
+    middleware: ['auth'],
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

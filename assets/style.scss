@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+html, body {
+    font-family: 'Roboto', sans-serif;;
+}
+
+.main-container-gate {
+    width: 100%;
+    display: flex;
+    max-width: 100%;
+    min-height: 100vh;
+    height: 100vh;
+
+    &>div {
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    .left-panel {
+        background-color: #dcebff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60%;
+
+        .logo {
+            width: 200px;
+            height: auto;
+        }
+    }
+    .right-panel {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40%;
+
+        .title {
+            font-size: 2em;
+            font-weight: bold;
+            font-family: 'Poppins', sans-serif;
+        }
+    }
+}
+
+.custom-input {
+    text-align: left;
+    margin-bottom: 20px;
+    
+    label {
+        font-size: 0.8em;
+    }
+}
