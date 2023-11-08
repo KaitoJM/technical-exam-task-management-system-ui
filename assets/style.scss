@@ -55,3 +55,24 @@ html, body {
 .form-control.error {
     border-color: red;
 }
+
+.main-container {
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    min-height: 100vh;
+
+    .side-bar {
+        width: 400px;
+        background-color: #dcebff;
+        padding: 20px;
+        border-radius: 20px;
+        display: block;
+    }
+
+    .page-content {
+        flex: 1;
+    }
+}

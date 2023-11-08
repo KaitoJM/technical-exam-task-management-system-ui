@@ -1,7 +1,10 @@
 <template>
-    <div>
-        test
-        <Nuxt />
-        footer
+  <div class="main-container">
+    <div class="side-bar">
+      <SideBar />
     </div>
+    <div class="page-content">
+        <Nuxt />
+    </div>
+  </div>
 </template>
