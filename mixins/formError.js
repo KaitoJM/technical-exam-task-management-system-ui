@@ -1,3 +1,4 @@
+// This mixin collects all the errors from the response object and handle them accordingly.
 export default {
     data() {
       return {

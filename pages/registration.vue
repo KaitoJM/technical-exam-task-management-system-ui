@@ -68,6 +68,7 @@
     },
     methods: {
       checkPasswordConfirmation() {
+        // password_cofirmation_err will handle the indicator for password and confirmation password error input.
         this.password_cofirmation_err = (this.form.password != this.cpassword) ? true : false
       },
       async register() {
@@ -81,10 +82,13 @@
   
             if (response.status == 201) {
               this.$toast.success(response.data)
+              // If registration is successfull, redirect to login page and pass the user's email used.
+              // this email will be then used as thje default email value on login page input.
               this.$router.push('/login?new_registered_email=' + this.form.email);
             }
           } catch (error) {
             this.loading = false;
+            // the following functions are from the FormError mixins method.
             this.detect_errors(error.response);
             this.toastErrors()
           }

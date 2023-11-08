@@ -5,11 +5,20 @@
       <p class="title" v-else>Welcome new user!</p>
       <div class="custom-input">
         <label>Email</label>
-        <b-form-input :class="{error: check_error('email')}" placeholder="johndoe@example.org" v-model="form.email"></b-form-input>
+        <b-form-input
+          :class="{error: check_error('email')}"
+          placeholder="johndoe@example.org" 
+          v-model="form.email"
+        ></b-form-input>
       </div>
       <div class="custom-input">
         <label>Password</label>
-        <b-form-input :class="{error: check_error('password')}" type="password" placeholder="••••••••" v-model="form.password"></b-form-input>
+        <b-form-input
+          :class="{error: check_error('password')}"
+          type="password"
+          placeholder="••••••••"
+          v-model="form.password"
+        ></b-form-input>
       </div>
       <b-button type="submit" block variant="primary" :disabled="loading">Login</b-button>
     </b-form>
@@ -38,6 +47,7 @@ export default {
     }
   },
   mounted() {
+    // gets the email from the URL query string and set it as default email value.
     if (this.$route.query.new_registered_email) {
       this.form.email = this.$route.query.new_registered_email
     }
@@ -58,6 +68,7 @@ export default {
           })
           .catch(err => {
             console.log(err.response)
+            // the following functions are from the FormError mixins method.
             this.detect_errors(err.response);
             this.toastErrors()
           })
