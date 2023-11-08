@@ -1,14 +1,15 @@
 <template>
   <div class="form-container">
     <b-form @submit.prevent.stop="login">
-      <p class="title">Welcome back!</p>
+      <p class="title" v-if="!$route.query.new_registered_email">Welcome back!</p>
+      <p class="title" v-else>Welcome new user!</p>
       <div class="custom-input">
         <label>Email</label>
         <b-form-input :class="{error: check_error('email')}" placeholder="johndoe@example.org" v-model="form.email"></b-form-input>
       </div>
       <div class="custom-input">
         <label>Password</label>
-        <b-form-input :class="{error: check_error('password')}" type="password" placeholder="Password here" v-model="form.password"></b-form-input>
+        <b-form-input :class="{error: check_error('password')}" type="password" placeholder="••••••••" v-model="form.password"></b-form-input>
       </div>
       <b-button type="submit" block variant="primary" :disabled="loading">Login</b-button>
     </b-form>
@@ -25,7 +26,6 @@
 import FormError from '~/mixins/FormError.js'
 
 export default {
-  name: 'IndexPage',
   layout: 'gate',
   mixins: [FormError],
   data() {
@@ -35,6 +35,11 @@ export default {
           password: '',
         },
         loading: false
+    }
+  },
+  mounted() {
+    if (this.$route.query.new_registered_email) {
+      this.form.email = this.$route.query.new_registered_email
     }
   },
   methods: {
