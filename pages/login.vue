@@ -1,15 +1,17 @@
 <template>
   <div class="form-container">
-    <p class="title">Welcome back!</p>
-    <div class="custom-input">
-      <label>Email</label>
-      <b-form-input placeholder="johndoe@example.org"></b-form-input>
-    </div>
-    <div class="custom-input">
-      <label>Password</label>
-      <b-form-input type="password" placeholder="Password here"></b-form-input>
-    </div>
-    <b-button block variant="primary">Login</b-button>
+    <b-form @submit.prevent.stop="login">
+      <p class="title">Welcome back!</p>
+      <div class="custom-input">
+        <label>Email</label>
+        <b-form-input :class="{error: check_error('email')}" placeholder="johndoe@example.org" v-model="form.email"></b-form-input>
+      </div>
+      <div class="custom-input">
+        <label>Password</label>
+        <b-form-input :class="{error: check_error('password')}" type="password" placeholder="Password here" v-model="form.password"></b-form-input>
+      </div>
+      <b-button type="submit" block variant="primary" :disabled="loading">Login</b-button>
+    </b-form>
     <br />
     <hr />
     <br />
@@ -20,16 +22,47 @@
 </template>
 
 <script>
+import FormError from '~/mixins/FormError.js'
+
 export default {
   name: 'IndexPage',
   layout: 'gate',
+  mixins: [FormError],
   data() {
     return {
-        test: process.env.API_URL
+        form: {
+          email: '',
+          password: '',
+        },
+        loading: false
     }
   },
-  mounted() {
-    this.$axios.post('/test');
+  methods: {
+    async login() {
+      this.loading = true
+
+      try {
+        await this.$axios.get(
+          '../sanctum/csrf-cookie'
+        )
+
+        await this.$auth.loginWith('local', { data: this.form })
+          .then(() => {
+            this.$toast.success('Login success')
+            this.$router.push('/')
+          })
+          .catch(err => {
+            console.log(err.response)
+            this.detect_errors(err.response);
+            this.toastErrors()
+          })
+
+        this.loading = false
+      } catch (error) {
+        this.loading = false
+        console.log(error)
+      }
+    }
   }
 }
 </script>

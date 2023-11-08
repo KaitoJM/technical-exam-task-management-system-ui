@@ -5,6 +5,7 @@ export default {
   env: env.parsed,
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
+  target: 'static',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -45,6 +46,7 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
+    '@nuxtjs/toast',
   ],
 
   axios: {
@@ -82,6 +84,20 @@ export default {
 
   router: {
     middleware: ['auth'],
+  },
+
+  toast: {
+    position: 'bottom-right',
+    duration: 3000,
+    register: [ // Register custom toasts
+      {
+        name: 'my-error',
+        message: 'Oops...Something went wrong',
+        options: {
+          type: 'error'
+        }
+      }
+    ]
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

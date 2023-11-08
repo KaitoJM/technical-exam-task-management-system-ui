@@ -51,3 +51,7 @@ html, body {
         font-size: 0.8em;
     }
 }
+
+.form-control.error {
+    border-color: red;
+}
