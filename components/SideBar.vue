@@ -4,10 +4,17 @@
     <br />
     <h2 class="greetings">Hi {{ $auth.user.name }}!</h2>
     <p>Welcome back to your workspace.</p>
-    <b-form-input
-      size="lg"
-      placeholder="Search">
-    </b-form-input>
+    <b-input-group class="mt-3">
+      <b-form-input
+        size="lg"
+        placeholder="Find task">
+      </b-form-input>
+      <b-input-group-append>
+        <b-button variant="primary">
+          <font-awesome-icon :icon="['fa', 'search']"/>
+        </b-button>
+      </b-input-group-append>
+    </b-input-group>
   </div>
 </template>
 

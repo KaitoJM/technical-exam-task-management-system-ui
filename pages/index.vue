@@ -1,17 +1,20 @@
 <template>
   <div>
-    <b-button v-b-modal.modal-new-task variant="primary" style="float: right;">New Task</b-button>
-    <h1>My Tasks</h1>
-    <b-table striped :items="data">
+    <div class="d-flex justify-content-between align-items-center">
+      <h1>My Tasks</h1>
+      <b-button @click="$bvModal.show('modal-new-task')" variant="primary" style="float: right;">
+      <font-awesome-icon :icon="['fa', 'plus']"/>
+      New Task
+    </b-button>
+    </div>
+    <b-table striped :items="data" :busy="isBusy">
       <template #cell(status)="data">
         <b-badge variant="warning" v-if="data.value == 'open'">{{ data.value }}</b-badge>
         <b-badge variant="info" v-if="data.value == 'in progress'">{{ data.value }}</b-badge>
         <b-badge variant="success" v-if="data.value == 'completed'">{{ data.value }}</b-badge>
       </template>
     </b-table>
-    <b-modal id="modal-new-task" centered title="Create New Task" cancel-disabled ok-disabled>
-      <NewTaskForm />
-    </b-modal>
+    <NewTaskFormModal />
   </div>
 </template>
 
@@ -35,6 +38,7 @@ export default {
   computed: {
     ...mapGetters({
       tasks: 'tasks/data',
+      isBusy: 'tasks/fetching',
     }),
     data() {
       if (this.tasks) {

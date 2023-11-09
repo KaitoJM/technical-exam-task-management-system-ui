@@ -21,6 +21,9 @@ export default {
     },
   },
   mutations: {
+    addData(state, data) {
+      state.data.unshift(data);
+    },
     setData(state, entities) {
       state.data = entities
     },
@@ -57,5 +60,19 @@ export default {
           return data
         })
     },
+    addData(context, payload) {
+      context.commit('startLoading')
+
+      return this.$axios
+        .post(context.state.base_url, payload)
+        .then(response => {
+          let data = response.data;
+
+          context.commit('addData', data)
+          context.commit('stopLoading')
+
+          return response
+        })
+    }
   },
 }
