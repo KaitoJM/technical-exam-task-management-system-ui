@@ -8,6 +8,9 @@
     </b-button>
     </div>
     <b-table striped :items="data" :busy="isBusy">
+      <template #cell(title)="data">
+        <b-link href="#" @click.prevent="showEditForm(data.item.id)">{{ data.value }}</b-link>
+      </template>
       <template #cell(status)="data">
         <b-badge variant="warning" v-if="data.value == 'open'">{{ data.value }}</b-badge>
         <b-badge variant="info" v-if="data.value == 'in progress'">{{ data.value }}</b-badge>
@@ -15,6 +18,7 @@
       </template>
     </b-table>
     <NewTaskFormModal />
+    <ModifyTaskFormModal :task_data="selected_task" />
   </div>
 </template>
 
@@ -25,6 +29,7 @@ export default {
   name: 'IndexPage',
   data() {
     return {
+      selected_task: null
     }
   },
   async asyncData({ store, error }) {
@@ -51,6 +56,16 @@ export default {
           }
         })
       }
+    }
+  },
+  methods: {
+    showEditForm(id) {
+      const item = this.tasks.find(item => {
+        return item.id == id
+      });
+
+      this.selected_task = JSON.parse(JSON.stringify(item));
+      this.$bvModal.show('modal-edit-task')
     }
   }
 }

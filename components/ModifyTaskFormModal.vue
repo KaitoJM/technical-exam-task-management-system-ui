@@ -1,8 +1,8 @@
 <template>
   <b-modal
-    id="modal-new-task"
+    id="modal-edit-task"
     centered
-    title="Create New Task"
+    :title="'Edit Task'"
   >
     <b-container>
       <b-form>
@@ -46,7 +46,7 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </b-col>
-          <b-col class="col-md-12">
+          <b-col class="col-md-10">
             <b-form-group
               label="Due date"
               label-for="input-due"
@@ -65,16 +65,43 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </b-col>
+          <b-col class="col-md-5">
+            <b-form-group
+              label="Status"
+              label-for="input-status"
+            >
+              <b-form-select
+                id="input-status"
+                v-model="$v.form.status.$model"
+                :state="validateState('status')"
+                aria-describedby="input-status-feedback"
+                :options="statuses"
+              ></b-form-select>
+              <b-form-invalid-feedback
+                id="input-status-feedback"
+              >
+                Task status is required.
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </b-col>
         </b-row>
       </b-form>
     </b-container>
     <template v-slot:modal-footer>
-      <div>
-        <b-button @click="cancel" variant="outline-primary" :disabled="loading">Cancel</b-button>
-        <b-button @click.prevent="submit" variant="primary" :disabled="loading">
-          <font-awesome-icon :icon="['fa', 'plus']"/>
-          Add
-        </b-button>
+      <div class="w-100 d-flex justify-content-between align-items-center">
+        <div>
+          <b-button variant="danger" @click="deleteTask">
+            <font-awesome-icon :icon="['fa', 'trash']"/>
+            Delete
+          </b-button>
+        </div>
+        <div>
+          <b-button @click="cancel" variant="outline-primary" :disabled="loading">Cancel</b-button>
+          <b-button @click.prevent="submit" variant="primary" :disabled="loading">
+            <font-awesome-icon :icon="['fa', 'save']"/>
+            Save
+          </b-button>
+        </div>
       </div>
     </template>
   </b-modal>
@@ -89,6 +116,9 @@ import { validationMixin } from "vuelidate";
 import { required, minLength } from "vuelidate/lib/validators";
 
 export default {
+  props: {
+    task_data: null
+  },
   data() {
     return {
       min_due: new Date(),
@@ -96,11 +126,24 @@ export default {
       form: {
         title: '',
         description: '',
-        due_date: ''
-      }
+        due_date: '',
+        status: ''
+      },
+      statuses: [
+        { value: 'open', text: 'Open' },
+        { value: 'in progress', text: 'In Progress' },
+        { value: 'completed', text: 'Completed' },
+      ]
     }
   },
   mixins: [validationMixin, FormError],
+  watch: {
+    task_data(data) {
+      if (data) {
+        this.form = data
+      }
+    }
+  },
   computed: {
     ...mapGetters({
       fetching: 'tasks/fetching',
@@ -116,12 +159,16 @@ export default {
       },
       due_date: {
         required,
+      },
+      status: {
+        required,
       }
     }
   },
   methods: {
     ...mapActions({
-      addData: 'tasks/addData'
+      editData: 'tasks/editData',
+      deleteData: 'tasks/deleteData',
     }),
     validateState(name) {
       const { $dirty, $error } = this.$v.form[name];
@@ -137,13 +184,13 @@ export default {
       this.loading = true
 
       try {
-        const response = await this.addData(this.form);
+        const response = await this.editData(this.form);
         
-        if (response.status == 201) {
-          this.$toast.success('A new task has been successfully added.');
+        if (response.status == 200) {
+          this.$toast.success('Your changes has been saved.');
           this.loading = false;
           this.clearForm();
-          this.$bvModal.hide('modal-new-task')
+          this.$bvModal.hide('modal-edit-task')
         }
       } catch (error) {
         this.loading = false;
@@ -156,10 +203,33 @@ export default {
       this.form.title = '';
       this.form.description = '';
       this.form.due_date = '';
+      this.form.status = '';
     },
     cancel() {
       this.clearForm();
-      this.$bvModal.hide('modal-new-task')
+      this.$bvModal.hide('modal-edit-task')
+    },
+    async deleteTask() {
+      let answer = confirm('Are you sure you want to remove this task?')
+      if (answer) {
+        this.loading = true
+
+        try {
+          const response = await this.deleteData(this.task_data.id);
+          
+          if (response.status == 200) {
+            this.$toast.success('Task has been deleted');
+            this.loading = false;
+            this.clearForm();
+            this.$bvModal.hide('modal-edit-task')
+          }
+        } catch (error) {
+          this.loading = false;
+          // capture and display errors from error code 422 request
+          this.detect_errors(error.response);
+          this.toastErrors()
+        }
+      }
     }
   }
 }
