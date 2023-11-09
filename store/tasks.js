@@ -2,23 +2,22 @@ export default {
   state: () => ({
     base_url: '/tasks',
     data: {},
-    links: {},
-    meta: {},
     fetching: false,
+    filters: {
+      search: '',
+      status: 'all'
+    }
   }),
   getters: {
     data: state => {
         return state.data
     },
-    links: state => {
-      return state.links
-    },
-    meta: state => {
-      return state.meta
-    },
     fetching: state => {
       return state.fetching
     },
+    filters: state => {
+      return state.filters
+    }
   },
   mutations: {
     addData(state, data) {
@@ -47,30 +46,27 @@ export default {
     setData(state, entities) {
       state.data = entities
     },
-    setLinks(state, links) {
-      state.links = links
-    },
-    setMeta(state, meta) {
-      state.meta = meta
-    },
     startLoading(state) {
       state.fetching = true
     },
     stopLoading(state) {
       state.fetching = false
     },
-    delete(state, entity) {
-      state.data.splice(state.data.indexOf(state.data.find(row => row.id == entity.id)), 1)
+    setFilterStatus(state, status) {
+      state.filters.status = status;
     },
+    setFilterSearch(state, search) {
+      state.filters.search = search;
+    }
   },
   actions: {
-    fetchData(context, payload) {
+    fetchData(context) {
       context.commit('startLoading')
 
       let url = `${context.state.base_url}`
-
+      console.log(context.state.filters)
       return this.$axios
-        .get(url)
+        .post('filter-tasks', context.state.filters)
         .then(response => {
           let data = response.data;
 

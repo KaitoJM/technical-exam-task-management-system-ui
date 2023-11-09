@@ -1,15 +1,16 @@
 <template>
   <div>
     <div class="d-flex justify-content-between align-items-center">
-      <h1>My Tasks</h1>
+      <h1>Your Tasks</h1>
       <b-button @click="$bvModal.show('modal-new-task')" variant="primary" style="float: right;">
       <font-awesome-icon :icon="['fa', 'plus']"/>
       New Task
     </b-button>
     </div>
+    <FilterSelected />
     <b-table striped :items="data" :busy="isBusy">
       <template #cell(title)="data">
-        <b-link href="#" @click.prevent="showEditForm(data.item.id)">{{ data.value }}</b-link>
+        <b-link href="#" class="text-dark" @click.prevent="showEditForm(data.item.id)">{{ data.value }}</b-link>
       </template>
       <template #cell(status)="data">
         <b-badge variant="warning" v-if="data.value == 'open'">{{ data.value }}</b-badge>
@@ -78,5 +79,8 @@ h1 {
   text-transform: capitalize;
   color: #071b52;
   margin-bottom: 20px;
+}
+table {
+  margin-top: 20px;
 }
 </style>
