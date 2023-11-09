@@ -29,6 +29,14 @@ export default {
             main_error: message,
             messages: error_messages
           }
+        } else {
+          let error_data = this.error_response.data
+          let message = error_data.message;
+
+          validation_errors = {
+            main_error: message,
+            messages: []
+          }
         }
   
         return validation_errors

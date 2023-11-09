@@ -16,7 +16,11 @@
 export default {
   methods: {
     logout() {
-      this.$auth.logout();
+      const answer = confirm('Are you sure you want to logout?');
+
+      if (answer) {
+        this.$auth.logout();
+      }
     }
   }
 }

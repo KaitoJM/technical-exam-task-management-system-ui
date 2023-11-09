@@ -3,23 +3,44 @@
     <b-form @submit.prevent.stop="login">
       <p class="title" v-if="!$route.query.new_registered_email">Welcome back!</p>
       <p class="title" v-else>Welcome new user!</p>
-      <div class="custom-input">
-        <label>Email</label>
+
+      <b-form-group
+        label="Email"
+        label-for="input-email"
+      >
         <b-form-input
-          :class="{error: check_error('email')}"
+          id="input-email"
+          v-model="$v.form.email.$model"
           placeholder="johndoe@example.org" 
-          v-model="form.email"
+          :state="validateState('email')"
+          aria-describedby="input-email-feedback"
         ></b-form-input>
-      </div>
-      <div class="custom-input">
-        <label>Password</label>
+        <b-form-invalid-feedback
+          id="input-email-feedback"
+        >
+          Email is required and should be a valid email address.
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+      <b-form-group
+        label="Password"
+        label-for="input-password"
+      >
         <b-form-input
-          :class="{error: check_error('password')}"
+          id="input-password"
+          v-model="$v.form.password.$model"
           type="password"
           placeholder="••••••••"
-          v-model="form.password"
+          :state="validateState('password')"
+          aria-describedby="input-password-feedback"
         ></b-form-input>
-      </div>
+        <b-form-invalid-feedback
+          id="input-password-feedback"
+        >
+          Password is required.
+        </b-form-invalid-feedback>
+      </b-form-group>
+
       <b-button type="submit" block variant="primary" :disabled="loading">Login</b-button>
     </b-form>
     <br />
@@ -34,9 +55,12 @@
 <script>
 import FormError from '~/mixins/FormError.js'
 
+import { validationMixin } from "vuelidate";
+import { required, email } from "vuelidate/lib/validators";
+
 export default {
   layout: 'gate',
-  mixins: [FormError],
+  mixins: [validationMixin, FormError],
   data() {
     return {
         form: {
@@ -52,8 +76,29 @@ export default {
       this.form.email = this.$route.query.new_registered_email
     }
   },
+  validations: {
+    form: {
+      email: {
+        required,
+        email
+      },
+      password: {
+        required,
+      },
+    }
+  },
   methods: {
+    validateState(name) {
+      const { $dirty, $error } = this.$v.form[name];
+      return $dirty ? !$error : null;
+    },
     async login() {
+      // local form validation
+      this.$v.form.$touch();
+      if (this.$v.form.$anyError) {
+        return;
+      }
+
       this.loading = true
 
       try {

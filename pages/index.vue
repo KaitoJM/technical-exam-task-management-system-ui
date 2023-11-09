@@ -8,16 +8,33 @@
     </b-button>
     </div>
     <FilterSelected />
-    <b-table striped :items="data" :busy="isBusy">
-      <template #cell(title)="data">
-        <b-link href="#" class="text-dark" @click.prevent="showEditForm(data.item.id)">{{ data.value }}</b-link>
-      </template>
-      <template #cell(status)="data">
-        <b-badge variant="warning" v-if="data.value == 'open'">{{ data.value }}</b-badge>
-        <b-badge variant="info" v-if="data.value == 'in progress'">{{ data.value }}</b-badge>
-        <b-badge variant="success" v-if="data.value == 'completed'">{{ data.value }}</b-badge>
-      </template>
-    </b-table>
+    <div v-if="data && data.length">
+      <b-table striped :items="data" :busy="isBusy">
+        <template #cell(title)="data">
+          <b-link href="#" class="text-dark" @click.prevent="showEditForm(data.item.id)">{{ data.value }}</b-link>
+        </template>
+        <template #cell(status)="data">
+          <b-badge variant="warning" v-if="data.value == 'open'">{{ data.value }}</b-badge>
+          <b-badge variant="info" v-if="data.value == 'in progress'">{{ data.value }}</b-badge>
+          <b-badge variant="success" v-if="data.value == 'completed'">{{ data.value }}</b-badge>
+        </template>
+      </b-table>
+    </div>
+    <div v-else-if="!filters.search && filters.status == 'all'" class="empty-state">
+      <center>
+        <font-awesome-icon style="font-size: 200px;" :icon="['fa', 'list-check']"/>
+        <br />
+        <br />
+        <p>
+          You have no tasks yet. Add new task by clicking the "Add Task" button on top.<br />
+          or by clicking 
+          <b-button size="sm" variant="primary" @click="$bvModal.show('modal-new-task')">
+            <font-awesome-icon :icon="['fa', 'plus']"/>
+            here
+          </b-button>
+        </p>
+      </center>
+    </div>
     <NewTaskFormModal />
     <ModifyTaskFormModal :task_data="selected_task" />
   </div>
@@ -45,6 +62,7 @@ export default {
     ...mapGetters({
       tasks: 'tasks/data',
       isBusy: 'tasks/fetching',
+      filters: 'tasks/filters',
     }),
     data() {
       if (this.tasks) {
