@@ -5,8 +5,22 @@
     <h2 class="greetings">Hi {{ $auth.user.name }}!</h2>
     <p>Welcome back to your workspace.</p>
     <TaskFilter />
+    <b-button variant="link" @click="logout" class="position-absolute" style="bottom: 20px; right: 20px">
+      Logout
+      <font-awesome-icon :icon="['fa', 'right-from-bracket']"/>
+    </b-button>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    logout() {
+      this.$auth.logout();
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .logo {
