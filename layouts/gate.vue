@@ -8,10 +8,13 @@
           <br />
           <h1>Technical Exam</h1>
           <b>Simple Task Manager System</b>
-          <br />
-          <br />
-          <br />
+          <br /><br /><br />
           <p>BY: JOHN MARK MANCOL</p>
+          <br /><br />
+          <b-link to="activity-2">
+            Part 2 - Design Implementation Accuracy Test
+            <font-awesome-icon :icon="['fa', 'right-long']"/>
+          </b-link>
         </center>
       </div>
     </div>

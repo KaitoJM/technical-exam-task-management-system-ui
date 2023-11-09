@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
 html, body {
     font-family: 'Roboto', sans-serif;;
@@ -85,4 +86,333 @@ html, body {
     align-items: center;
     justify-content: center;
     color: #5e7597;
+}
+
+// Part 2 of Technical Exam
+$text-color: #797979;
+$border-color: #dedfe6;
+$accent-color: #3656f5;
+$darker-color: #f0f2f8;
+$space-top: 70px;
+
+.p2-main-container {
+    background-color: #f7f9fd;
+    min-height: 100vh;
+    color: $text-color;
+    font-family: 'Lato', sans-serif;
+
+    // All header styles
+    .header {
+        height: $space-top;
+        background-color: #fff;
+        width: 100%;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        box-shadow: 0px 10px 10px -17px #6c6c6c;
+        padding: 10px 20px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+
+        .head-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 350px;
+
+            .logo-container {
+                width: 100px;
+                margin-right: 40px;
+    
+                img {
+                    width: 100%;
+                }
+            }
+    
+            .menu {
+                ul {
+                    list-style-type: none;
+                    display: flex;
+                    gap: 10px;
+                    margin: 0px;
+                    padding: 0px;
+                    font-size: 0.9em;
+    
+                    li {
+                        a {
+                            color: $text-color;
+                        }
+                    }
+                }
+            }
+        }
+
+        .head-center {
+            .search-group {
+                border: 1px solid $border-color;
+                padding: 5px;
+                border-radius: 30px;
+                width: 370px;
+                display: flex;
+                height: 45px;
+
+                input {
+                    border: none;
+                    flex: 1;
+                    outline: none;
+                    height: 100%;
+                    margin-left: 20px;
+                }
+
+                button {
+                    border-radius: 20px;
+                    border: none;
+                    background-color: $accent-color;
+                    color: #fff;
+                    font-size: 0.8em;
+                    padding: 5px 15px;
+                    height: 100%;
+                }
+            }
+        }
+
+        .head-right {
+            width: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            .profile-summary {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+
+                .profile-detail {
+                    display: flex;
+                    flex-direction: column;
+                    font-size: 0.8em;
+                    align-items: flex-end;
+
+                    span {
+                        color: $accent-color;
+                    }
+                }
+
+                .profile-photo-container {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background-color: #fff;
+                    overflow: hidden;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
+    }
+
+    .page-container {
+        padding: 20px;
+        width: 1200px;
+        margin: auto;
+        margin-top: $space-top;
+        display: flex;
+        gap: 20px;
+
+        .left-nav {
+            width: 300px;
+            font-size: 0.9em;
+
+            ul {
+                margin: 0px;
+                padding: 0px;
+                list-style-type: none;
+                border-bottom: 1px solid $border-color;
+                padding: 20px 0;
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                li {
+                    a {
+                        height: 40px;
+                        display: flex;
+                        align-items: center;
+                        padding: 10px;
+                        gap: 20px;
+                        color: $text-color;
+                        border-radius: 5px;
+
+                        .ico {
+                            width: 25px;
+                            align-items: left;
+                        }
+
+                        span {
+                            flex: 1;
+                        }
+
+                        .direction-icon {
+                            width: 25px;
+                            display: none;
+                        }
+
+                        &:hover, &.active {
+                            color: $accent-color;
+                            text-decoration: none;
+                            background-color: $border-color;
+
+                            .direction-icon {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .footer {
+                font-size: 0.8em;
+                color: $text-color;
+                opacity: 0.8;
+
+                span {
+                    margin-bottom: 8px;
+                    display: block;
+                }
+
+                a {
+                    color: $accent-color;
+                }
+            }
+        }
+
+        .contents {
+            flex: 1;
+            font-size: 0.81em;
+
+            .progress-status {
+                ul {
+                    list-style-type: none;
+                    margin: 0px;
+                    padding: 0px;
+                    display: flex;
+                    gap: 25px;
+
+                    li {
+                        width: 25%;
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+
+                        .icon-container {
+                            width: 35px;
+                            height: 35px;
+                            border-radius: 50%;
+                            background-color: $darker-color;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+
+                        .progress-container {
+                            flex: 1;
+
+                            .progress-display {
+                                display: flex;
+                                align-items: center;
+                                gap: 15px;
+                                color: red;
+                                font-size: 0.8em;
+
+                                .progress-total {
+                                    width: 100%;
+                                    height: 4px;
+                                    background-color: $darker-color;
+                                    border-radius: 3px;
+                                    position: relative;
+
+                                    .progress-bar {
+                                        width: 0%;
+                                        border-radius: 3px;
+                                        position: absolute;
+                                        height: 100%;
+                                        top: 0px;
+                                        left: 0px;
+                                    }
+                                }
+                            }
+
+                            &.orange {
+                                .progress-display  {
+                                    color: orange;
+
+                                    .progress-bar {
+                                        background-color: orange;
+                                        width: 75%;
+                                    }
+                                }
+                            }
+                            &.red {
+                                .progress-display  {
+                                    color: red;
+
+                                    .progress-bar {
+                                        background-color: red;
+                                        width: 50%;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .profile-container {
+                display: flex;
+                gap: 20px;
+
+                .profile-summary {
+                    flex: 1;
+                }
+
+                .other-info {
+                    width: 300px;
+                }
+            }
+        }
+    }
+
+    .box {
+        box-sizing: border-box;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px -7px #868686;
+        margin-bottom: 20px;
+
+        .box-frame {
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: $border-color;
+        }
+
+        h1, h2, h3, h4, h5 {
+            color: #000;
+        }
+
+        p {
+            margin-bottom: 0px;
+        }
+    }
 }
