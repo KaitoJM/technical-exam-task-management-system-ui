@@ -116,6 +116,13 @@
       <div class="contents">
         <div class="box">
           <div class="box-frame">
+            <div class="reminder-notif">
+              <input type="checkbox" />
+              Don't remind me again
+              <a href="#" class="close-btn">
+                <font-awesome-icon :icon="['fa', 'xmark']"/>
+              </a>
+            </div>
             <h5>Welcome, John Mark!</h5>
             <p>
               <span class="accented">You are almost done!</span>
@@ -224,14 +231,111 @@
               </div>
               <div class="divider"></div>
               <div class="box-frame">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi ducimus, laborum velit accusamus necessitatibus molestiae aliquid architecto tempore earum, numquam excepturi ratione dolor exercitationem doloremque eum sapiente temporibus consectetur. Molestiae?
+                <a href="#" class="btn-edit"><font-awesome-icon :icon="['fa', 'pencil']"/></a>
+                <h5 class="section-title">General Details</h5>
+                <ul class="list">
+                  <li>
+                    <div class="property">Date of Birth</div>
+                    <div class="value">04 October 1993</div>
+                  </li>
+                  <li>
+                    <div class="property">Gender</div>
+                    <div class="value">Male</div>
+                  </li>
+                  <li>
+                    <div class="property">Civil Status</div>
+                    <div class="value">Single</div>
+                  </li>
+                  <li>
+                    <div class="property">Nationality</div>
+                    <div class="value">Filipino</div>
+                  </li>
+                </ul>
+              </div>
+              <div class="divider"></div>
+              <div class="box-frame">
+                <a href="#" class="btn-edit"><font-awesome-icon :icon="['fa', 'pencil']"/></a>
+                <h5 class="section-title">Professional Status</h5>
+                <ul class="list">
+                  <li>
+                    <div class="property">Recent Job Title</div>
+                    <div class="value">Software Engineer</div>
+                  </li>
+                  <li>
+                    <div class="property">Interview Availability</div>
+                    <div class="value">-</div>
+                  </li>
+                  <li>
+                    <div class="property">Current Monthly Salary (Gross)</div>
+                    <div class="value accented">Php 45,000.00</div>
+                  </li>
+                  <li>
+                    <div class="property">Allowance (Non-Taxable)</div>
+                    <div class="value">-</div>
+                  </li>
+                  <li>
+                    <div class="property">Pre-employment Leaves</div>
+                    <div class="value">07 July - Birthday</div>
+                  </li>
+                  <li>
+                    <div class="property">Where can you work?</div>
+                    <div class="value">Office and Home</div>
+                  </li>
+                  <li>
+                    <div class="property">Estimate Travel Time to Office</div>
+                    <div class="value">15 mins</div>
+                  </li>
+                  <li>
+                    <div class="property">Connection Type</div>
+                    <div class="value">Globe Fiber</div>
+                  </li>
+                  <li>
+                    <div class="property">Website / Portfolio</div>
+                    <div class="value">http://juanmarcus.com</div>
+                  </li>
+                </ul>
+              </div>
+              <div class="divider"></div>
+              <div class="box-frame">
+                <a href="#" class="btn-edit"><font-awesome-icon :icon="['fa', 'pencil']"/></a>
+                <h5 class="section-title">Preferences</h5>
+                <ul class="list">
+                  <li>
+                    <div class="property">Day Shift</div>
+                    <div class="value">-</div>
+                  </li>
+                  <li>
+                    <div class="property">Mid Shift</div>
+                    <div class="value">-</div>
+                  </li>
+                  <li>
+                    <div class="property">Night Shift</div>
+                    <div class="value">-</div>
+                  </li>
+                  <li>
+                    <div class="property">English Only Policy (EOP)</div>
+                    <div class="value">-</div>
+                  </li>
+                  <li>
+                    <div class="property">Where did you hear us?</div>
+                    <div class="value">-</div>
+                  </li>
+                  <li>
+                    <div class="property">Marketing Permission</div>
+                    <div class="value">-</div>
+                  </li>
+                  <li>
+                    <div class="property">Referral</div>
+                    <div class="value">-</div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
           <div class="other-info">
             <div class="box">
               <div class="box-frame">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi ducimus, laborum velit accusamus necessitatibus molestiae aliquid architecto tempore earum, numquam excepturi ratione dolor exercitationem doloremque eum sapiente temporibus consectetur. Molestiae?
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Est dicta aliquam maiores dolor, necessitatibus fugiat harum quod earum quos deserunt nobis laborum amet recusandae illum impedit non expedita laudantium iste.
               </div>
             </div>
           </div>

@@ -91,12 +91,15 @@ html, body {
 // Part 2 of Technical Exam
 $text-color: #797979;
 $darker-text-color: #505669;
+$lighter-text-color: #a7a7a7;
 $border-color: #dedfe6;
 $accent-color: #3656f5;
 $darker-color: #f0f2f8;
 $space-top: 70px;
 $page-width: 1200px;
 $green-accent: #22c55f;
+$orange-accent: #ffa953;
+$red-accent: #fe6260;
 
 .p2-main-container {
     background-color: #f7f9fd;
@@ -235,10 +238,11 @@ $green-accent: #22c55f;
         padding-right: calc((100vw - $page-width) / 2);
         overflow: auto;
         height: calc(100vh - $space-top);
+        width: 100vw;
 
 
         .left-nav {
-            width: 300px;
+            width: 250px;
             font-size: 0.9em;
             position: sticky;
             position: -webkit-sticky;
@@ -343,7 +347,7 @@ $green-accent: #22c55f;
                                 display: flex;
                                 align-items: center;
                                 gap: 15px;
-                                color: red;
+                                color: $red-accent;
                                 font-size: 0.8em;
 
                                 .progress-total {
@@ -366,20 +370,20 @@ $green-accent: #22c55f;
 
                             &.orange {
                                 .progress-display  {
-                                    color: orange;
+                                    color: $orange-accent;
 
                                     .progress-bar {
-                                        background-color: orange;
+                                        background-color: $orange-accent;
                                         width: 75%;
                                     }
                                 }
                             }
                             &.red {
                                 .progress-display  {
-                                    color: red;
+                                    color: $red-accent;
 
                                     .progress-bar {
-                                        background-color: red;
+                                        background-color: $red-accent;
                                         width: 50%;
                                     }
                                 }
@@ -446,7 +450,33 @@ $green-accent: #22c55f;
                 }
 
                 .other-info {
-                    width: 300px;
+                    width: 250px;
+                }
+            }
+
+            .section-title {
+                font-size: 1.1em;
+            }
+
+            .list {
+                margin: 0px;
+                padding: 0px;
+                list-style-type: none;
+
+                li {
+                    display: flex;
+                    gap: 20px;
+                    height: 30px;
+                    align-items: center;
+
+                    .property {
+                        width: 220px;
+                        color: $lighter-text-color;
+                    }
+
+                    .value {
+                        color: $darker-text-color;
+                    }
                 }
             }
         }
@@ -468,8 +498,24 @@ $green-accent: #22c55f;
                 position: absolute;
                 top: 20px;
                 right: 20px;
+                color: $lighter-text-color;
+                font-size: 0.9em;
+            }
+
+            .reminder-notif {
+                position: absolute;
+                top: 20px;
+                right: 20px;
                 color: $text-color;
                 font-size: 0.9em;
+                display: flex;
+                gap: 8px;
+                align-items: center;
+                transform: scale(0.9);
+
+                .close-btn {
+                    color: $red-accent;
+                }
             }
         }
 
