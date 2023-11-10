@@ -502,6 +502,66 @@ $red-accent: #fe6260;
                 }
             }
 
+            .recommendations {
+                margin-top: 15px;
+                font-size: 0.9em;
+
+                .toggle-hide {
+                    width: 100%;
+                    border: none;
+                    background-color: none;
+                    outline: none;
+                    text-align: left;
+                    color: $text-color;
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+
+                    svg {
+                        margin-right: 8px;
+                    }
+                }
+
+                .recommendation-content {
+                    margin: 8px 0;
+                    padding-left: 23px;
+
+                    p {
+                        margin-bottom: 8px;
+                    }
+
+                    ul {
+                        margin: 0px;
+                        list-style-type: none;
+                        padding-left: 20px;
+
+                        li {
+                            margin-bottom: 5px;
+                            position: relative;
+
+                            &:before {
+                                content: " ";
+                                width: 10px;
+                                height: 10px;
+                                border: 1px solid #797979;
+                                border-radius: 50%;
+                                top: 4px;
+                                left: -20px;
+                                position: absolute;
+                                z-index: 9999;
+                            }
+                        }
+                    }
+                }
+
+                &.hidden {
+                    .recommendation-content {
+                        display: none;
+                    }
+                }
+            }
+
             .list {
                 margin: 0px;
                 padding: 0px;

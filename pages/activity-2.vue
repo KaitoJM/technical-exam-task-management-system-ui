@@ -352,7 +352,7 @@
                   <img src="~static/award.png" alt="">
                   <p>
                     You have one of the strongest professional profile in our talent pool.
-                    Expect progress on yout application at anytime soon.
+                    Expect progress on your application at anytime soon.
                   </p>
                 </div>
               </div>
@@ -360,6 +360,30 @@
             <div class="box">
               <div class="box-frame">
                 <part-2-progress-bar label="Profile Completion" percentage="50" />
+                <div class="recommendations" :class="{'hidden': hide_recommendation}">
+                  <a href="#" class="toggle-hide" @click="hide_recommendation = !hide_recommendation">
+                    <font-awesome-icon v-if="!hide_recommendation" class="direction-icon" :icon="['fa', 'chevron-up']"/>
+                    <font-awesome-icon v-else class="direction-icon" :icon="['fa', 'chevron-down']"/>
+                    <span v-if="!hide_recommendation">Hide</span>
+                    <span v-else>Show</span>
+                     Recommendations
+                  </a>
+                  <div class="recommendation-content">
+                    <p>
+                      Fill up the following items to strengthen your profile.
+                      This can help us matching your profile and increase your chances 
+                      of landing into your desired role.
+                    </p>
+
+                    <ul>
+                      <li>Share <a href="#">Date of birth</a></li>
+                      <li>Specify <a href="#">Current Monthly Salary</a></li>
+                      <li>Add one(1) <a href="#">Character Reference</a></li>
+                      <li>Add <a href="#">Current Address</a></li>
+                      <li>Add atleast five (5) items in <a href="#">Other Skills</a></li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -374,6 +398,11 @@ import Part2ProgressBar from '../components/Part2ProgressBar.vue'
 export default {
   components: { Part2ProgressBar },
   auth: false,
-  layout: 'activity-2-layout'
+  layout: 'activity-2-layout',
+  data() {
+    return {
+      hide_recommendation: false
+    }
+  }
 }
 </script>
