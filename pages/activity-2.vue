@@ -335,7 +335,31 @@
           <div class="other-info">
             <div class="box">
               <div class="box-frame">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Est dicta aliquam maiores dolor, necessitatibus fugiat harum quod earum quos deserunt nobis laborum amet recusandae illum impedit non expedita laudantium iste.
+                <h5 class="right-section-title">Video Introduction</h5>
+              </div>
+              <div class="video-intro">
+                <img src="~static/video-intro.jpeg" alt="">
+                <div class="time">
+                  1:55
+                </div>
+              </div>
+            </div>
+            <div class="box">
+              <div class="box-frame">
+                <part-2-progress-bar label="Profile Completion" percentage="100" />
+                <div class="award-box">
+                  <div class="title">Well done, John Mark</div>
+                  <img src="~static/award.png" alt="">
+                  <p>
+                    You have one of the strongest professional profile in our talent pool.
+                    Expect progress on yout application at anytime soon.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="box">
+              <div class="box-frame">
+                <part-2-progress-bar label="Profile Completion" percentage="50" />
               </div>
             </div>
           </div>
@@ -346,7 +370,9 @@
 </template>
 
 <script>
+import Part2ProgressBar from '../components/Part2ProgressBar.vue'
 export default {
+  components: { Part2ProgressBar },
   auth: false,
   layout: 'activity-2-layout'
 }

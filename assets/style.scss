@@ -122,6 +122,7 @@ $red-accent: #fe6260;
         align-items: center;
         justify-content: space-between;
         gap: 15px;
+        z-index: 9;
 
         .head-left {
             display: flex;
@@ -458,6 +459,49 @@ $red-accent: #fe6260;
                 font-size: 1.1em;
             }
 
+            .right-section-title {
+                font-size: 1.1em;
+                margin: 0px;
+            }
+
+            .video-intro {
+                position: relative;
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+
+                .time {
+                    position: absolute;
+                    bottom: 13px;
+                    right: 15px;
+                    background-color: #000000d1;
+                    width: 50px;
+                    height: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #fff;
+                    border-radius: 5px;
+                }
+            }
+
+            .award-box {
+                .title {
+                    text-align: center;
+                    margin: 10px 0;
+                    font-size: 1.1em;
+                    color: #22c55f;
+                }
+                
+                img {
+                    display: block;
+                    width: 80px;
+                    margin: auto;
+                    margin-bottom: 10px;
+                }
+            }
+
             .list {
                 margin: 0px;
                 padding: 0px;
@@ -488,6 +532,7 @@ $red-accent: #fe6260;
         border-radius: 5px;
         box-shadow: 0 4px 8px -7px #868686;
         margin-bottom: 20px;
+        overflow: hidden;
 
         .box-frame {
             padding: 20px;
