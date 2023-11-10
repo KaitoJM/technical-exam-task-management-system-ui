@@ -118,7 +118,7 @@
           <div class="box-frame">
             <h5>Welcome, John Mark!</h5>
             <p>
-              <span>You are almost done!</span>
+              <span class="accented">You are almost done!</span>
               To further strengthen your profile, it is highly recommended for you to complete the 4 sections of your application.
             </p>
           </div>
@@ -189,6 +189,40 @@
         <div class="profile-container">
           <div class="profile-summary">
             <div class="box">
+              <div class="profile-basic-info">
+                <div class="profile-photo-container">
+                  <div class="box-frame">
+                    <img src="~static/profile.png" />
+                  </div>
+                </div>
+                <div class="divider-h"></div>
+                <div class="profile-basic-details">
+                  <div class="box-frame">
+                    <a href="#" class="btn-edit"><font-awesome-icon :icon="['fa', 'pencil']"/></a>
+                    <h1>John Mark M. Mancol</h1>
+                    <h3>Full Stack Developer</h3>
+                    <p class="p-info course-info">
+                      <font-awesome-icon class="direction-icon" :icon="['fa', 'graduation-cap']"/> 
+                      Bachelor of Science in Information Technology
+                    </p>
+                    <div class="p-flex-info">
+                      <p class="p-info">
+                        <font-awesome-icon class="direction-icon" :icon="['fa', 'suitcase']"/> 
+                        12 years
+                      </p>
+                      <p class="p-info">
+                        <font-awesome-icon class="direction-icon" :icon="['fa', 'calendar-check']"/> 
+                        Immediately
+                      </p>
+                      <p class="p-info">
+                        <font-awesome-icon class="direction-icon" :icon="['fa', 'dollar-sign']"/> 
+                        <span class="accented">Php 50,000</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="divider"></div>
               <div class="box-frame">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi ducimus, laborum velit accusamus necessitatibus molestiae aliquid architecto tempore earum, numquam excepturi ratione dolor exercitationem doloremque eum sapiente temporibus consectetur. Molestiae?
               </div>

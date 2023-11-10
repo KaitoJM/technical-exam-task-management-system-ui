@@ -90,10 +90,13 @@ html, body {
 
 // Part 2 of Technical Exam
 $text-color: #797979;
+$darker-text-color: #505669;
 $border-color: #dedfe6;
 $accent-color: #3656f5;
 $darker-color: #f0f2f8;
 $space-top: 70px;
+$page-width: 1200px;
+$green-accent: #22c55f;
 
 .p2-main-container {
     background-color: #f7f9fd;
@@ -218,17 +221,28 @@ $space-top: 70px;
         }
     }
 
+    // All content styles
     .page-container {
         padding: 20px;
-        width: 1200px;
+        // width: 100%;
         margin: auto;
         margin-top: $space-top;
         display: flex;
         gap: 20px;
+        position: fixed;
+        top: 0px;
+        padding-left: calc((100vw - $page-width) / 2);
+        padding-right: calc((100vw - $page-width) / 2);
+        overflow: auto;
+        height: calc(100vh - $space-top);
+
 
         .left-nav {
             width: 300px;
             font-size: 0.9em;
+            position: sticky;
+            position: -webkit-sticky;
+            top: 0px;
 
             ul {
                 margin: 0px;
@@ -381,6 +395,54 @@ $space-top: 70px;
 
                 .profile-summary {
                     flex: 1;
+
+                    .profile-basic-info {
+                        display: flex;
+                        .profile-photo-container {
+    
+                            img {
+                                width: 100px;
+                                height: 100px;
+                                border-radius: 50%;
+                                object-fit: cover;
+                                border: 1px solid $border-color;
+                            }
+                        }
+                    }
+
+                    .profile-basic-details {
+                        flex: 1;
+
+                        h1 {
+                            font-size: 1.5em;
+                        }
+
+                        h3 {
+                            font-size: 1.1em;
+                            color: $darker-text-color;
+                        }
+                    }
+
+                    .p-info {
+                        svg {
+                            color: $darker-text-color;
+                            margin-right: 10px;
+                        }
+                    }
+
+                    .course-info {
+                        margin-top: 12px;
+                        margin-bottom: 8px;
+                    }
+                    .p-flex-info {
+                        display: flex;
+                        gap: 20px;
+                        width: 100%;
+
+                        .p-info {
+                            width: 33.333%;
+                        }
+                    }
                 }
 
                 .other-info {
@@ -400,10 +462,25 @@ $space-top: 70px;
         .box-frame {
             padding: 20px;
             box-sizing: border-box;
+            position: relative;
+
+            .btn-edit {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                color: $text-color;
+                font-size: 0.9em;
+            }
         }
 
         .divider {
             height: 1px;
+            background-color: $border-color;
+        }
+
+        .divider-h {
+            height: auto;
+            width: 1px;
             background-color: $border-color;
         }
 
@@ -413,6 +490,10 @@ $space-top: 70px;
 
         p {
             margin-bottom: 0px;
+        }
+
+        .accented {
+            color: $green-accent;
         }
     }
 }
